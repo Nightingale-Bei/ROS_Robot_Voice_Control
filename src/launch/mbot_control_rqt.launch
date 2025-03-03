@@ -1,0 +1,54 @@
+<launch>
+	
+	
+	    <!-- 设置launch文件的参数 -->
+    <arg name="world_name" value="$(find gazebo_test)/worlds/world1.world"/>
+    <arg name="paused" default="false"/>
+    <arg name="use_sim_time" default="true"/>
+    <arg name="gui" default="true"/>
+    <arg name="headless" default="false"/>
+    <arg name="debug" default="false"/>
+
+    <!-- 运行gazebo仿真环境 -->
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <arg name="world_name" value="$(arg world_name)" />
+        <arg name="debug" value="$(arg debug)" />
+        <arg name="gui" value="$(arg gui)" />
+        <arg name="paused" value="$(arg paused)"/>
+        <arg name="use_sim_time" value="$(arg use_sim_time)"/>
+        <arg name="headless" value="$(arg headless)"/>
+    </include>
+    
+    
+    
+  <!-- 加载机器人模型描述参数 -->
+    <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find gazebo_test)/urdf/mbot_base.xacro'" /> 
+       
+          
+      <!-- Load joint controller configurations from YAML file to parameter server -->
+  <rosparam file="$(find gazebo_test)/config/robot_control.yaml" command="load"/>
+
+  <!-- load the controllers -->
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" ns="/mbot" args="mbot_joint_state_controller z_rotator_joint_position_controller y_rotator_joint_position_controller  left_wheel_joint_velocity_controller right_wheel_joint_velocity_controller "/>
+
+    <!-- 运行joint_state_publisher节点，发布机器人的关节状态  -->
+    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" ></node> 
+    
+    <!-- 运行robot_state_publisher节点，发布tf  -->
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"  output="screen" >
+        <param name="publish_frequency" type="double" value="50.0" />
+    </node>
+      
+      
+       
+   <node name="control" pkg="gazebo_test" type="mbot_control" output="screen" />
+       
+ 	
+       <node name="Camera_display" pkg="rqt_gui" type="rqt_gui"  />
+      
+
+
+
+
+</launch>
+

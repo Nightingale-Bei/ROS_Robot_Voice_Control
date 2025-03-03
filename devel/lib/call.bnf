@@ -1,0 +1,18 @@
+﻿#BNF+IAT 1.0 UTF-8;
+!grammar call;
+!slot <want>;
+
+!slot <direction>;
+!slot <action>;
+
+!start <callstart>;
+<callstart>:[<want>]<control>;
+<want>:向|看;
+
+<control>:<direction><action>|<direction>|<action>;
+
+
+<direction>:前|后|左|左边|右|右边|上|下|中间;
+<action>:走|转|看|停止|前进|后退|左转|右转;
+
+
