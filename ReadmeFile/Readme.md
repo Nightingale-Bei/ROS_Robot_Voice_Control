@@ -8,7 +8,7 @@
 
 控制系统的总设计如图所示。
 
-![image-20250303094633923](D:\BEI\ED--\Github_Upload\ROS_Robot_VoiceControl\ReadmeFile\Readme.assets\image-20250303094633923.png)
+![image-20250303094633923](.\Readme.assets\image-20250303094633923.png)
 
 
 
