@@ -31,7 +31,7 @@
 
 ---
 ---
-以下为项目简要描述，详细开发文档参考
+以下为项目简要描述，详细开发文档参考[报告](https://github.com/Nightingale-Bei/ROS_Robot_Voice_Control/blob/main/ReadmeFile/%E5%BC%80%E5%8F%91%E6%8A%A5%E5%91%8A.pdf)
 
 
 
