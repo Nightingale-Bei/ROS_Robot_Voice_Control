@@ -318,7 +318,7 @@ int main(int argc, char *argv[])
      tms_new.c_lflag &= ~(ICANON | ECHO);
      tcsetattr(0, TCSANOW, &tms_new);
 
-    const char *login_config = "appid = 9f9d795d"; // 登录参数
+    const char *login_config = "appid = 123456"; // 登录参数,appid替换为自己的appid
     UserData asr_data;
     int ret = 0;
     char c;
